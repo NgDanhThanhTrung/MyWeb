@@ -31,6 +31,7 @@
         }
         .section-label { font-weight: 800; margin-bottom: 15px; display: block; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
         .label-self { color: var(--accent-self); }
+        .label-other { color: var(--accent-other); }
 
         input {
             width: 100%; padding: 14px; margin-bottom: 10px; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white; outline: none; transition: 0.3s;
@@ -58,7 +59,6 @@
         .copy-btn:hover { background: #4ade80; color: #0f172a; border-color: #4ade80; }
         .del-btn:hover { background: #f43f5e; color: white; border-color: #f43f5e; }
 
-        /* All In One Special Box */
         .sub-links {
             background: rgba(0, 0, 0, 0.2); border-top: 1px solid var(--glass-border); padding: 12px 20px; display: flex; flex-direction: column; gap: 10px;
         }
@@ -116,17 +116,23 @@
         function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
         initCanvas(); for(let i=0; i<70; i++) particles.push(new Particle()); animate();
 
-        // Database setup with your specific links
+        // Database setup
         const confLink = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.conf";
         const sgLink = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.sgmodule";
 
-        let db = JSON.parse(localStorage.getItem('btnLinksV4')) || {
+        // Sử dụng btnLinksV5 để làm mới dữ liệu từ code
+        let db = JSON.parse(localStorage.getItem('btnLinksV5')) || {
             self: [
                 { title: "All in one (ProMax Config)", special: true },
                 { title: "YouTube Ads Block & Premium Unlocked (PicsArt, Lightroom, Spotify, Alight Motion, etc.)", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/All%20IN%20ONE(v1.0).sgmodule" },
                 { title: "YouTube Premium, Spotify Premium & Locket Gold", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/ALL_IN_ONE.sgmobile" }
             ],
-            other: []
+            other: [
+                { title: "Spotify", url: "https://raw.githubusercontent.com/quocchienn/1in1/refs/heads/main/Spotify.module" },
+                { title: "Locket fix ios 26.0", url: "https://raw.githubusercontent.com/trickerchannel/shadowrocket/refs/heads/main/LocketGold.sgmodule" },
+                { title: "Config Youtube", url: "https://raw.githubusercontent.com/quocchienn/YouTubePIP/refs/heads/YouTube%2B%2B/YouTubefix3.conf" },
+                { title: "Locket", url: "https://raw.githubusercontent.com/quocchienn/lockcrack/refs/heads/module/Locket_Gold.sgmodule" }
+            ]
         };
 
         function render() {
@@ -164,7 +170,7 @@
                     </div>`;
                 }).join('');
             });
-            localStorage.setItem('btnLinksV4', JSON.stringify(db));
+            localStorage.setItem('btnLinksV5', JSON.stringify(db));
         }
 
         function saveLink(type) {
