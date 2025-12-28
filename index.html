@@ -17,63 +17,59 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--primary-bg); color: var(--text-color); min-height: 100vh; display: flex; justify-content: center; padding: 40px 15px; overflow-x: hidden; }
+        body { background-color: var(--primary-bg); color: var(--text-color); min-height: 100vh; display: flex; justify-content: center; padding: 60px 15px; overflow-x: hidden; }
         #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 
-        .wrapper { width: 100%; max-width: 700px; z-index: 1; }
-        .header-title { text-align: center; margin-bottom: 50px; font-weight: 800; font-size: 2.5rem; background: linear-gradient(to right, #00f2fe, #fff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .wrapper { width: 100%; max-width: 650px; z-index: 1; }
+        
+        /* Avatar & Profile */
+        .profile { text-align: center; margin-bottom: 40px; }
+        .profile-img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--accent-self); padding: 5px; margin-bottom: 15px; box-shadow: 0 0 20px rgba(0, 242, 254, 0.3); }
+        .header-title { font-weight: 800; font-size: 2rem; background: linear-gradient(to right, #00f2fe, #fff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; }
+        .header-sub { opacity: 0.6; font-size: 0.9rem; letter-spacing: 1px; }
 
-        /* Bố cục trải dài 1 cột */
-        .section-group { margin-bottom: 50px; animation: fadeInUp 0.6s ease-out forwards; }
+        .section-group { margin-bottom: 45px; animation: fadeInUp 0.8s ease-out forwards; }
         
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .input-card {
-            background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 24px; border: 1px solid var(--glass-border); margin-bottom: 20px; backdrop-filter: blur(15px);
+        .section-label { 
+            font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; 
+            gap: 12px; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; opacity: 0.9;
         }
-        
-        .section-label { font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
         .label-self { color: var(--accent-self); }
         .label-other { color: var(--accent-other); }
 
-        input {
-            width: 100%; padding: 14px 18px; margin-bottom: 12px; border-radius: 14px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.4); color: white; outline: none; transition: 0.3s;
-        }
-        input:focus { border-color: rgba(255,255,255,0.4); background: rgba(0,0,0,0.6); }
-        
-        .btn-add { width: 100%; padding: 14px; border-radius: 14px; border: none; font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
-        .add-self { background: var(--accent-self); color: #0f172a; }
-        .add-other { background: var(--accent-other); color: white; }
-        .btn-add:hover { transform: scale(1.02); filter: brightness(1.1); }
-
-        .link-grid { display: flex; flex-direction: column; gap: 15px; }
+        .link-grid { display: flex; flex-direction: column; gap: 16px; }
         .link-btn-item {
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; transition: all 0.3s ease; position: relative; overflow: hidden;
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; backdrop-filter: blur(10px);
         }
-        .link-btn-item:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255,255,255,0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .link-btn-item:hover { background: rgba(255, 255, 255, 0.08); transform: scale(1.02); border-color: rgba(255,255,255,0.4); }
 
         .btn-content { display: flex; align-items: center; width: 100%; }
-        .main-link { flex-grow: 1; padding: 20px 25px; text-decoration: none; color: white; display: flex; flex-direction: column; overflow: hidden; }
-        .main-link strong { font-size: 1rem; margin-bottom: 6px; line-height: 1.4; }
-        .main-link span { font-size: 0.75rem; opacity: 0.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .main-link { flex-grow: 1; padding: 22px 28px; text-decoration: none; color: white; display: flex; flex-direction: column; overflow: hidden; }
+        .main-link strong { font-size: 1rem; margin-bottom: 6px; line-height: 1.4; letter-spacing: 0.5px; }
+        .main-link span { font-size: 0.7rem; opacity: 0.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: monospace; }
 
-        .side-actions { display: flex; padding-right: 20px; gap: 10px; }
+        .side-actions { display: flex; padding-right: 20px; }
         .icon-btn {
-            width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); color: white; border: 1px solid var(--glass-border); cursor: pointer; transition: 0.2s;
+            width: 42px; height: 42px; border-radius: 14px; display: flex; align-items: center; justify-content: center; 
+            background: rgba(255,255,255,0.06); color: white; border: 1px solid var(--glass-border); cursor: pointer; transition: 0.2s;
         }
         .copy-btn:hover { background: #4ade80; color: #0f172a; border-color: #4ade80; }
-        .del-btn:hover { background: #f43f5e; color: white; border-color: #f43f5e; }
 
+        /* Đặc biệt cho phần All In One */
         .sub-links {
-            background: rgba(0, 0, 0, 0.25); border-top: 1px solid var(--glass-border); padding: 15px 25px; display: flex; flex-direction: column; gap: 12px;
+            background: rgba(0, 0, 0, 0.2); border-top: 1px solid var(--glass-border); padding: 15px 25px; display: flex; flex-direction: column; gap: 10px;
         }
-        .sub-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; background: rgba(255,255,255,0.04); border-radius: 12px; }
-        .sub-item span { color: #94a3b8; font-size: 0.85rem; font-weight: 600; }
-        .sub-item .actions a { color: var(--accent-self); text-decoration: none; font-weight: 700; margin-right: 15px; font-size: 0.85rem; }
-        .sub-item .actions button { background: none; border: 1px solid var(--accent-self); color: var(--accent-self); cursor: pointer; padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; transition: 0.3s; }
+        .sub-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: rgba(255,255,255,0.04); border-radius: 15px; border: 1px solid transparent; transition: 0.3s; }
+        .sub-item:hover { border-color: var(--glass-border); background: rgba(255,255,255,0.07); }
+        .sub-item span { color: #94a3b8; font-size: 0.8rem; font-weight: 600; }
+        .sub-item .actions a { color: var(--accent-self); text-decoration: none; font-weight: 700; margin-right: 15px; font-size: 0.8rem; text-transform: uppercase; }
+        .sub-item .actions button { background: none; border: 1px solid rgba(0, 242, 254, 0.3); color: var(--accent-self); cursor: pointer; padding: 5px 12px; border-radius: 10px; font-size: 0.7rem; transition: 0.3s; }
         .sub-item .actions button:hover { background: var(--accent-self); color: #0f172a; }
     </style>
 </head>
@@ -82,26 +78,21 @@
     <canvas id="particles"></canvas>
 
     <div class="wrapper">
-        <h1 class="header-title">Link Dashboard</h1>
+        <div class="profile">
+            <h1 class="header-title">Nguyễn Danh Thành Trung</h1>
+            <p class="header-sub">PROXY CONFIG & MODULES</p>
+        </div>
 
         <div class="section-group">
-            <div class="input-card">
-                <span class="section-label label-self"><i class="fa-solid fa-wand-magic-sparkles"></i> Sản phẩm tự làm</span>
-                <input type="text" id="titleSelf" placeholder="Tên sản phẩm...">
-                <input type="text" id="urlSelf" placeholder="Link GitHub/Raw...">
-                <button class="btn-add add-self" onclick="saveLink('self')">Thêm vào danh sách</button>
+            <div class="section-label label-self">
+                <i class="fa-solid fa-star"></i> MY PRODUCTS
             </div>
             <div class="link-grid" id="listSelf"></div>
         </div>
 
-        <hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--glass-border), transparent); margin-bottom: 50px;">
-
         <div class="section-group">
-            <div class="input-card">
-                <span class="section-label label-other"><i class="fa-solid fa-link"></i> Nguồn tham khảo</span>
-                <input type="text" id="titleOther" placeholder="Tên nguồn tham khảo...">
-                <input type="text" id="urlOther" placeholder="https://...">
-                <button class="btn-add add-other" onclick="saveLink('other')">Thêm vào tham khảo</button>
+            <div class="section-label label-other">
+                <i class="fa-solid fa-layer-group"></i> REFERENCE RESOURCES
             </div>
             <div class="link-grid" id="listOther"></div>
         </div>
@@ -127,24 +118,25 @@
         const confLink = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.conf";
         const sgLink = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.sgmodule";
 
-        let db = JSON.parse(localStorage.getItem('btnLinksV7')) || {
+        // Dữ liệu cố định trong code
+        const db = {
             self: [
                 { title: "All in one (ProMax Config)", special: true },
                 { title: "YouTube Ads Block & Premium Unlocked", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/All%20IN%20ONE(v1.0).sgmodule" },
-                { title: "YouTube, Spotify & Locket Gold", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/ALL_IN_ONE.sgmobile" }
+                { title: "YouTube, Spotify & Locket Gold Pack", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/ALL_IN_ONE.sgmobile" }
             ],
             other: [
-                { title: "Spotify Premium", url: "https://raw.githubusercontent.com/quocchienn/1in1/refs/heads/main/Spotify.module" },
-                { title: "Locket fix ios 26.0", url: "https://raw.githubusercontent.com/trickerchannel/shadowrocket/refs/heads/main/LocketGold.sgmodule" },
-                { title: "Config Youtube (PiP & Fix)", url: "https://raw.githubusercontent.com/quocchienn/YouTubePIP/refs/heads/YouTube%2B%2B/YouTubefix3.conf" },
-                { title: "Locket Gold Crack", url: "https://raw.githubusercontent.com/quocchienn/lockcrack/refs/heads/module/Locket_Gold.sgmodule" }
+                { title: "Spotify Premium Module", url: "https://raw.githubusercontent.com/quocchienn/1in1/refs/heads/main/Spotify.module" },
+                { title: "Locket Gold (Fix iOS 26.0)", url: "https://raw.githubusercontent.com/trickerchannel/shadowrocket/refs/heads/main/LocketGold.sgmodule" },
+                { title: "Config Youtube PIP & Fix", url: "https://raw.githubusercontent.com/quocchienn/YouTubePIP/refs/heads/YouTube%2B%2B/YouTubefix3.conf" },
+                { title: "Locket Gold Crack Module", url: "https://raw.githubusercontent.com/quocchienn/lockcrack/refs/heads/module/Locket_Gold.sgmodule" }
             ]
         };
 
         function render() {
             ['self', 'other'].forEach(type => {
                 const container = document.getElementById(`list${type.charAt(0).toUpperCase() + type.slice(1)}`);
-                container.innerHTML = db[type].map((item, index) => {
+                container.innerHTML = db[type].map((item) => {
                     if (item.special) {
                         return `
                         <div class="link-btn-item">
@@ -153,11 +145,10 @@
                                     <strong style="color:var(--accent-self)">${item.title}</strong>
                                     <span>Surge / Shadowrocket Config Files</span>
                                 </div>
-                                <div class="side-actions"><button class="icon-btn del-btn" onclick="del('${type}', ${index})"><i class="fa-solid fa-trash-can"></i></button></div>
                             </div>
                             <div class="sub-links">
-                                <div class="sub-item"><span>Cấu hình (.conf)</span><div class="actions"><a href="${confLink}" target="_blank">Mở</a><button onclick="copy('${confLink}', this)">Copy</button></div></div>
-                                <div class="sub-item"><span>Module (.sgmodule)</span><div class="actions"><a href="${sgLink}" target="_blank">Mở</a><button onclick="copy('${sgLink}', this)">Copy</button></div></div>
+                                <div class="sub-item"><span>FILE .CONF</span><div class="actions"><a href="${confLink}" target="_blank">MỞ</a><button onclick="copy('${confLink}', this)">COPY</button></div></div>
+                                <div class="sub-item"><span>FILE .SGMODULE</span><div class="actions"><a href="${sgLink}" target="_blank">MỞ</a><button onclick="copy('${sgLink}', this)">COPY</button></div></div>
                             </div>
                         </div>`;
                     }
@@ -170,31 +161,22 @@
                             </a>
                             <div class="side-actions">
                                 <button class="icon-btn copy-btn" onclick="copy('${item.url}', this)"><i class="fa-regular fa-copy"></i></button>
-                                <button class="icon-btn del-btn" onclick="del('${type}', ${index})"><i class="fa-solid fa-trash-can"></i></button>
                             </div>
                         </div>
                     </div>`;
                 }).join('');
             });
-            localStorage.setItem('btnLinksV7', JSON.stringify(db));
         }
-
-        function saveLink(type) {
-            const tInput = document.getElementById(`title${type.charAt(0).toUpperCase() + type.slice(1)}`);
-            const uInput = document.getElementById(`url${type.charAt(0).toUpperCase() + type.slice(1)}`);
-            if(!tInput.value) return alert("Vui lòng nhập tên!");
-            db[type].unshift({ title: tInput.value, url: uInput.value || "#" });
-            tInput.value = ''; uInput.value = '';
-            render();
-        }
-
-        function del(type, index) { if(confirm("Xóa nhé Trung?")) { db[type].splice(index, 1); render(); } }
 
         function copy(text, btn) {
             navigator.clipboard.writeText(text);
             const original = btn.innerHTML;
             btn.innerHTML = 'COPIED';
-            setTimeout(() => { btn.innerHTML = original; }, 1500);
+            if(btn.tagName === 'BUTTON') btn.style.borderColor = '#4ade80';
+            setTimeout(() => { 
+                btn.innerHTML = original; 
+                if(btn.tagName === 'BUTTON') btn.style.borderColor = '';
+            }, 1500);
         }
 
         render();
