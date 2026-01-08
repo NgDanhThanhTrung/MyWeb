@@ -80,7 +80,6 @@
             font-weight: 600;
         }
 
-        /* Notice Card */
         .notice-card {
             background: rgba(251, 191, 36, 0.03);
             border: 1px solid rgba(251, 191, 36, 0.15);
@@ -126,7 +125,6 @@
             border-radius: 50%;
         }
 
-        /* Section Groups */
         .section-group {
             margin-bottom: 15px;
         }
@@ -190,7 +188,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Link Items */
         .link-item {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--card-border);
@@ -246,7 +243,6 @@
             background: var(--accent-cyan);
         }
 
-        /* Sub Links for Configs */
         .sub-container {
             background: rgba(0, 0, 0, 0.2);
             border-top: 1px solid var(--card-border);
@@ -295,7 +291,6 @@
             color: #000;
         }
 
-        /* Success Toast/Tooltip */
         #toast {
             position: fixed;
             bottom: 30px;
@@ -350,8 +345,8 @@
     </div>
 
     <script>
-        const conf = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.conf";
-        const sg = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.sgmodule";
+        const conf = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/main/AllInOne_ProMax.conf";
+        const sg = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/main/AllInOne_ProMax.sgmodule";
         
         const db = {
             self: [
@@ -376,7 +371,6 @@
             return { icon: 'fa-solid fa-link', color: '#94a3b8' };
         };
 
-        // Clipboard function with visual feedback
         const copyToClipboard = (text) => {
             const el = document.createElement('textarea');
             el.value = text;
@@ -390,7 +384,6 @@
             setTimeout(() => toast.classList.remove('show'), 2000);
         };
 
-        // Render sections
         const renderApp = () => {
             const container = document.getElementById('sections-container');
             
@@ -457,7 +450,6 @@
             container.innerHTML = html;
         };
 
-        // Particles Background
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         let particles = [];
