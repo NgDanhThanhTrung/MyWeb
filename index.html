@@ -1,53 +1,352 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modules | NDTT</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --p-bg: #0f172a; --g-bg: rgba(255,255,255,0.03); --g-bd: rgba(255,255,255,0.1); --ac-s: #00f2fe; --ac-o: #a855f7; --ac-w: #fbbf24; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background: var(--p-bg); color: #f8fafc; min-height: 100vh; display: flex; justify-content: center; padding: 60px 15px; overflow-x: hidden; }
-        #particles { position: fixed; top: 0; left: 0; z-index: -1; }
-        .wrapper { width: 100%; max-width: 650px; z-index: 1; }
-        .profile { text-align: center; margin-bottom: 30px; }
-        .header-title { font-weight: 800; font-size: 2.2rem; background: linear-gradient(to right, #00f2fe, #fff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .header-sub { opacity: 0.6; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; }
-        .notice-card { background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.2); border-radius: 20px; padding: 20px; margin-bottom: 40px; backdrop-filter: blur(10px); }
-        .notice-title { color: var(--ac-w); font-weight: 800; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-        .notice-content { font-size: 0.85rem; line-height: 1.6; color: #cbd5e1; list-style: none; }
-        .notice-content li::before { content: "•"; color: var(--ac-w); margin-right: 8px; }
-        .section-header { background: var(--g-bg); border: 1px solid var(--g-bd); border-radius: 20px; padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); transition: 0.3s; margin-bottom: 20px; }
-        .section-label { font-weight: 800; display: flex; align-items: center; gap: 12px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
-        .label-self { color: var(--ac-s); } .label-other { color: var(--ac-o); }
-        .chevron { transition: 0.3s; opacity: 0.5; } .active .chevron { transform: rotate(180deg); opacity: 1; }
-        .link-grid { display: none; flex-direction: column; gap: 12px; padding: 0 5px 20px 5px; animation: fadeIn 0.4s; }
-        .active + .link-grid { display: flex; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .link-btn-item { background: rgba(255,255,255,0.02); border: 1px solid var(--g-bd); border-radius: 18px; overflow: hidden; transition: 0.3s; }
-        .link-btn-item:hover { background: rgba(255,255,255,0.05); transform: translateX(5px); }
-        .main-link { flex-grow: 1; padding: 18px 22px; text-decoration: none; color: #fff; font-size: 0.95rem; font-weight: 700; display: flex; align-items: center; gap: 12px; }
-        .main-link i { font-size: 1.1rem; filter: drop-shadow(0 0 5px currentColor); }
-        .icon-btn { width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--g-bd); cursor: pointer; margin-right: 15px; }
-        .sub-links { background: rgba(0,0,0,0.2); border-top: 1px solid var(--g-bd); padding: 12px 20px; display: flex; flex-direction: column; gap: 8px; }
-        .sub-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; background: rgba(255,255,255,0.03); border-radius: 12px; }
-        .sub-item span { color: #94a3b8; font-size: 0.75rem; font-weight: 600; }
-        .actions a, .actions button { color: var(--ac-s); text-decoration: none; font-weight: 700; font-size: 0.75rem; background: none; border: 1px solid rgba(0,242,254,0.3); padding: 4px 10px; border-radius: 8px; cursor: pointer; margin-left: 8px; transition: 0.2s; }
+        :root {
+            --p-bg: #0b0f1a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --accent-cyan: #00f2fe;
+            --accent-purple: #a855f7;
+            --accent-gold: #fbbf24;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--p-bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 15px;
+            overflow-x: hidden;
+        }
+
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 580px;
+            z-index: 1;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header-title {
+            font-weight: 800;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent-cyan), #fff, var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .header-sub {
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Notice Card */
+        .notice-card {
+            background: rgba(251, 191, 36, 0.03);
+            border: 1px solid rgba(251, 191, 36, 0.15);
+            border-radius: 20px;
+            padding: 18px 22px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .notice-title {
+            color: var(--accent-gold);
+            font-weight: 800;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notice-content {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+            list-style: none;
+        }
+
+        .notice-content li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 4px;
+        }
+
+        .notice-content li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 5px;
+            height: 5px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+        }
+
+        /* Section Groups */
+        .section-group {
+            margin-bottom: 15px;
+        }
+
+        .section-header {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 18px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .section-label {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem;
+        }
+
+        .label-self { color: var(--accent-cyan); }
+        .label-other { color: var(--accent-purple); }
+
+        .chevron {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        .active .chevron {
+            transform: rotate(180deg);
+            opacity: 1;
+        }
+
+        .link-grid {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            padding: 12px 5px 0 5px;
+            animation: reveal 0.4s ease forwards;
+        }
+
+        .active + .link-grid {
+            display: flex;
+        }
+
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Link Items */
+        .link-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .link-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: scale(1.01);
+        }
+
+        .main-row {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .main-row i {
+            width: 24px;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            text-align: center;
+        }
+
+        .item-title {
+            flex-grow: 1;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid var(--card-border);
+            cursor: pointer;
+            transition: 0.2s;
+            margin-left: 10px;
+        }
+
+        .icon-btn:active {
+            transform: scale(0.9);
+            background: var(--accent-cyan);
+        }
+
+        /* Sub Links for Configs */
+        .sub-container {
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid var(--card-border);
+            padding: 12px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sub-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+        }
+
+        .sub-label {
+            color: var(--text-dim);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .sub-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .sub-actions a, .sub-actions button {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.7rem;
+            background: rgba(0, 242, 254, 0.05);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            padding: 5px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .sub-actions a:hover, .sub-actions button:hover {
+            background: var(--accent-cyan);
+            color: #000;
+        }
+
+        /* Success Toast/Tooltip */
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--accent-cyan);
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.3);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+        }
+
+        #toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 480px) {
+            .header-title { font-size: 1.7rem; }
+            .section-header { padding: 15px 20px; }
+            .main-row { padding: 14px 16px; }
+        }
     </style>
 </head>
 <body>
     <canvas id="particles"></canvas>
+    
+    <div id="toast">Đã sao chép liên kết!</div>
+
     <div class="wrapper">
-        <div class="profile">
+        <header class="profile">
             <h1 class="header-title">Nguyễn Danh Thành Trung</h1>
-            <p class="header-sub">PROXY CONFIG & MODULES</p>
-        </div>
-        <div class="notice-card">
-            <div class="notice-title"><i class="fa-solid fa-circle-exclamation"></i> LƯU Ý QUAN TRỌNG</div>
-            <ul class="notice-content"><li>Bật VPN trong ShadowRocket để dùng Premium.</li><li>Tắt khi không dùng để tránh nóng máy.</li></ul>
-        </div>
-        <div id="sections"></div>
+            <p class="header-sub">Proxy Config & Modules</p>
+        </header>
+
+        <section class="notice-card">
+            <div class="notice-title">
+                <i class="fa-solid fa-circle-exclamation"></i> 
+                LƯU Ý QUAN TRỌNG
+            </div>
+            <ul class="notice-content">
+                <li>Bật VPN trong ShadowRocket để kích hoạt Premium.</li>
+                <li>Tắt module khi không dùng để tiết kiệm pin & tránh nóng máy.</li>
+                <li>Ưu tiên sử dụng các bản NDTT Edition để ổn định nhất.</li>
+            </ul>
+        </section>
+
+        <div id="sections-container"></div>
     </div>
 
     <script>
@@ -56,7 +355,8 @@
         
         const db = {
             self: [
-                { t: "All in one (ProMax Config)", sp: 1 }, 
+                { t: "All in one (ProMax Config)", sp: true }, 
+                { t: "Spotify (NDTT Edition)", u: "https://raw.githubusercontent.com/NgDanhThanhTrung/modules/main/SPOTIFY/SPOTIFY.sgmodule" },
                 { t: "Locket Gold (NDTT Edition)", u: "https://raw.githubusercontent.com/NgDanhThanhTrung/modules/main/LOCKET/Locket_NDTT.sgmodule" }, 
                 { t: "YouTube, Spotify & Locket Pack", u: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/ALL_IN_ONE.sgmobile" }
             ],
@@ -67,60 +367,139 @@
             ]
         };
 
-        // Ưu tiên kiểm tra các từ khóa tổng hợp trước
-        const getInfo = (t) => {
-            const s = t.toLowerCase();
-            // Nếu là gói tổng hợp (Pack hoặc All in one)
-            if (s.includes('pack') || s.includes('all in one')) return { c: 'fa-solid fa-box-archive', col: '#00f2fe' };
-            
-            // Nếu là ứng dụng đơn lẻ
-            if (s.includes('spotify')) return { c: 'fa-brands fa-spotify', col: '#1DB954' };
-            if (s.includes('youtube')) return { c: 'fa-brands fa-youtube', col: '#FF0000' };
-            if (s.includes('locket')) return { c: 'fa-solid fa-heart', col: '#FFB800' };
-            
-            return { c: 'fa-solid fa-link', col: '#94a3b8' };
+        const getIconInfo = (title) => {
+            const s = title.toLowerCase();
+            if (s.includes('pack') || s.includes('all in one')) return { icon: 'fa-solid fa-box-archive', color: '#00f2fe' };
+            if (s.includes('spotify')) return { icon: 'fa-brands fa-spotify', color: '#1DB954' };
+            if (s.includes('youtube')) return { icon: 'fa-brands fa-youtube', color: '#FF0000' };
+            if (s.includes('locket')) return { icon: 'fa-solid fa-heart', color: '#FFB800' };
+            return { icon: 'fa-solid fa-link', color: '#94a3b8' };
         };
 
-        // Particles
-        const canvas = document.getElementById('particles'), ctx = canvas.getContext('2d');
-        let pts = [];
-        const init = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-        class P {
-            constructor() { Object.assign(this, { x: Math.random()*canvas.width, y: Math.random()*canvas.height, s: Math.random()*1.5, sx: Math.random()*0.4-0.2, sy: Math.random()*0.4-0.2, o: Math.random()*0.4 }); }
-            up() { this.x += this.sx; this.y += this.sy; if(this.x>canvas.width) this.x=0; if(this.y>canvas.height) this.y=0; }
-            dr() { ctx.fillStyle = `rgba(255,255,255,${this.o})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.s, 0, 7); ctx.fill(); }
-        }
-        const loop = () => { ctx.clearRect(0,0,canvas.width,canvas.height); pts.forEach(p=>{p.up();p.dr();}); requestAnimationFrame(loop); };
-        init(); for(let i=0;i<70;i++) pts.push(new P()); loop();
+        // Clipboard function with visual feedback
+        const copyToClipboard = (text) => {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        };
 
-        const render = () => {
-            const wrap = document.getElementById('sections');
-            wrap.innerHTML = Object.entries(db).map(([k, v]) => `
-                <div class="section-group">
-                    <div class="section-header ${k==='self'?'active':''}" onclick="this.classList.toggle('active')">
-                        <div class="section-label label-${k}"><i class="fa-solid fa-${k==='self'?'star':'layer-group'}"></i> ${k.toUpperCase()} PRODUCTS</div>
-                        <i class="fa-solid fa-chevron-down chevron"></i>
+        // Render sections
+        const renderApp = () => {
+            const container = document.getElementById('sections-container');
+            
+            const html = Object.entries(db).map(([key, items]) => {
+                const isSelf = key === 'self';
+                return `
+                    <div class="section-group">
+                        <div class="section-header ${isSelf ? 'active' : ''}" onclick="this.classList.toggle('active')">
+                            <div class="section-label label-${key}">
+                                <i class="fa-solid fa-${isSelf ? 'star' : 'layer-group'}"></i> 
+                                ${key.toUpperCase()} PRODUCTS
+                            </div>
+                            <i class="fa-solid fa-chevron-down chevron"></i>
+                        </div>
+                        <div class="link-grid">
+                            ${items.map(item => {
+                                const info = getIconInfo(item.t);
+                                if (item.sp) {
+                                    return `
+                                        <div class="link-item">
+                                            <div class="main-row">
+                                                <i class="${info.icon}" style="color:${info.color}"></i>
+                                                <span class="item-title" style="color:var(--accent-cyan)">${item.t}</span>
+                                            </div>
+                                            <div class="sub-container">
+                                                <div class="sub-row">
+                                                    <span class="sub-label">FILE .CONF</span>
+                                                    <div class="sub-actions">
+                                                        <a href="${conf}" target="_blank">MỞ</a>
+                                                        <button onclick="copyToClipboard('${conf}')">COPY</button>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-row">
+                                                    <span class="sub-label">FILE .SGMODULE</span>
+                                                    <div class="sub-actions">
+                                                        <a href="${sg}" target="_blank">MỞ</a>
+                                                        <button onclick="copyToClipboard('${sg}')">COPY</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                } else {
+                                    return `
+                                        <div class="link-item">
+                                            <div class="main-row">
+                                                <a href="${item.u}" target="_blank" style="text-decoration:none; display:flex; align-items:center; flex-grow:1; color:inherit;">
+                                                    <i class="${info.icon}" style="color:${info.color}"></i>
+                                                    <span class="item-title">${item.t}</span>
+                                                </a>
+                                                <button class="icon-btn" onclick="copyToClipboard('${item.u}')">
+                                                    <i class="fa-regular fa-copy"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                            }).join('')}
+                        </div>
                     </div>
-                    <div class="link-grid">${v.map(i => {
-                        const info = getInfo(i.t);
-                        return i.sp ? `
-                        <div class="link-btn-item">
-                            <div class="main-link" style="color:var(--ac-s)"><i class="${info.c}" style="color:${info.col}"></i> ${i.t}</div>
-                            <div class="sub-links">
-                                <div class="sub-item"><span>FILE .CONF</span><div class="actions"><a href="${conf}" target="_blank">MỞ</a><button onclick="cp('${conf}',this)">COPY</button></div></div>
-                                <div class="sub-item"><span>FILE .SGMODULE</span><div class="actions"><a href="${sg}" target="_blank">MỞ</a><button onclick="cp('${sg}',this)">COPY</button></div></div>
-                            </div>
-                        </div>` : `
-                        <div class="link-btn-item">
-                            <div class="btn-content">
-                                <a href="${i.u}" target="_blank" class="main-link"><i class="${info.c}" style="color:${info.col}"></i> ${i.t}</a>
-                                <button class="icon-btn" onclick="cp('${i.u}',this)"><i class="fa-regular fa-copy"></i></button>
-                            </div>
-                        </div>`}).join('')}</div>
-                </div>`).join('');
+                `;
+            }).join('');
+            
+            container.innerHTML = html;
         };
-        const cp = (t, b) => { navigator.clipboard.writeText(t); const old = b.innerHTML; b.innerHTML = 'OK'; setTimeout(() => b.innerHTML = old, 1000); };
-        render(); window.onresize = init;
+
+        // Particles Background
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        const initCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 60; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 1.5 + 0.5,
+                    speedX: (Math.random() - 0.5) * 0.3,
+                    speedY: (Math.random() - 0.5) * 0.3,
+                    opacity: Math.random() * 0.5
+                });
+            }
+        };
+
+        const drawParticles = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+
+                ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(drawParticles);
+        };
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        drawParticles();
+        renderApp();
     </script>
 </body>
 </html>
